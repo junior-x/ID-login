@@ -1,32 +1,15 @@
-///import logo from "./logo.svg";
+import React, { Component, Fragment } from "react";
 import "./App.css";
-import { Component, Fragment } from "react";
-import { Container } from "@material-ui/core";
-import FormularioCadastro from "./components/FormularioCadastro";
-
+import FormularioCadastro from "./components/FormularioCadastro/FormularioCadastro";
 
 class App extends Component {
   render() {
     return (
-      <Container component="article" maxWidth="sm" className="App-canvas">
-        <section className="App-header">
-          <h1 className="App-header_text">FORMULÁRIO DE CADASTRO</h1>
-        </section>
-        <FormularioCadastro aoEnviar={aoEnviarForm} validarCPF={validarCPF} />
-      </Container>
+      <Fragment>
+        <h1>Formulário de cadastro</h1>
+        <FormularioCadastro />
+      </Fragment>
     );
-  }
-}
-
-function aoEnviarForm(dados) {
-  console.log(dados);
-}
-
-function validarCPF(cpf){
-  if(cpf.length!== 11){
-    return{valido:false, texto:"CPF deve ter 11 digitos."}
-  }else{
-    return{valido:true, texto:""}
   }
 }
 

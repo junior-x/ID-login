@@ -1,11 +1,39 @@
-import { TextField } from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
 import React from "react";
-import { TextField } from "@material-ui/core/TextField";
 
-function DadosUsuario() {
-  retur(
-    <form>
-      <TextField id="email" label="email" type="email" />
+function DadosUsuario({aoEnviar}) {
+  return (
+    <form 
+      className="formulario-cadastro_model formulario-cadastro_background"
+      onSubmit={(event)=>{
+        event.preventDefault();
+        aoEnviar();
+      }}
+    >
+      <TextField
+        id="email"
+        label="email"
+        type="email"
+        variant="outlined"
+        margin="normal"
+        fullWidth
+      />
+      <TextField
+        id="senha"
+        label="senha"
+        type="password"
+        variant="outlined"
+        margin="normal"
+        fullWidth
+      />
+      <Button
+        type="submit"
+        variant="outlined"
+        color="secondary"
+        className="formulario-cadastro_checkbox"
+      >
+        Cadastrar
+      </Button>
     </form>
   );
 }

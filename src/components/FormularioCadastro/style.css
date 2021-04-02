@@ -40,3 +40,24 @@
 .formulario-cadastro_checkbox{
     align-items: flex;
 }
+.cadastro-finalizado_text{
+    width: 100%;
+    height: 36px;  
+    padding: 30px;
+    text-align: center;
+    color: blanchedalmond;
+    text-shadow: 1px 1px 0 rgb(49, 49, 49);
+    background-color: rgb(98, 218, 124);
+    border-radius: 90px;
+    box-shadow: 
+        9px 9px 0 rgb(255, 255, 255),
+        18px 18px 0 rgb(149, 172, 185);
+    border-color: rgb(97, 95, 95);
+    stroke-linecap: butt;
+}
+.cadastro-finalizado_box{
+    position: relative;
+    position: center;
+    height: auto;
+    width: auto;
+}

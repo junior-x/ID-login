@@ -1,23 +1,23 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import "./style.css";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Checkbox from "@material-ui/core/Checkbox";
 
-function DadosPessoais({aoEnviar, validarCPF}) {
+function DadosPessoais({ aoEnviar, validarCPF }) {
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
   const [cpf, setCpf] = useState("");
   const [promocoes, setPromocoes] = useState(true);
   const [novidades, setNovidades] = useState(true);
-  const [erros, setErros] = useState({cpf:{valido:true, texto:""}})
+  const [erros, setErros] = useState({ cpf: { valido: true, texto: "" } });
 
   return (
     <form
       className="formulario-cadastro_model formulario-cadastro_background"
-      onSubmint={(event) => {
+      onSubmit={(event) => {
         event.preventDefault();
-        aoEnviar({nome, sobrenome, promocoes, novidades});
+        aoEnviar({ nome, sobrenome, promocoes, novidades });
       }}
     >
       <TextField
@@ -47,12 +47,10 @@ function DadosPessoais({aoEnviar, validarCPF}) {
         onChange={(event) => {
           setCpf(event.target.value);
         }}
-
-        onBlur={(event)=>{
+        onBlur={(event) => {
           const ehValido = validarCPF(cpf);
-          setErros({cpf:ehValido})
+          setErros({ cpf: ehValido });
         }}
-
         error={!erros.cpf.valido}
         helperText={erros.cpf.texto}
         id="CPF"
@@ -82,6 +80,7 @@ function DadosPessoais({aoEnviar, validarCPF}) {
         inputProps={{ "aria-label": "secondary checkbox" }}
       />
       <Button
+        type="submit"
         variant="outlined"
         color="secondary"
         className="formulario-cadastro_checkbox"
