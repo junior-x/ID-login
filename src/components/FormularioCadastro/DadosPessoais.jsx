@@ -1,17 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./style.css";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Checkbox from "@material-ui/core/Checkbox";
+import ValidacoesCadastro from "../../contexts/ValidacoesCadastro";
 
-function DadosPessoais({ aoEnviar, validacoes }) {
+function DadosPessoais({ aoEnviar }) {
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
   const [cpf, setCpf] = useState("");
   const [promocoes, setPromocoes] = useState(true);
   const [novidades, setNovidades] = useState(true);
   const [erros, setErros] = useState({ cpf: { valido: true, texto: "" } });
-  
+
+  const validacoes = useContext(ValidacoesCadastro);
+
   function validarCampos(event) {
     const { name, value } = event.target;
     const novoEstado = { ...erros };
@@ -19,12 +22,23 @@ function DadosPessoais({ aoEnviar, validacoes }) {
     setErros(novoEstado);
   }
 
+  function possoEnviar() {
+    let posso = true;
+    for (let campo in erros) {
+      if (!erros[campo].valido) {
+        return false;
+      }
+    }
+  }
+
   return (
     <form
       className="formulario-cadastro_model formulario-cadastro_background"
       onSubmit={(event) => {
         event.preventDefault();
-        aoEnviar({ nome, sobrenome, promocoes, novidades, cpf });
+        if (possoEnviar()) {
+          aoEnviar({ nome, sobrenome, promocoes, novidades, cpf });
+        }
       }}
     >
       <TextField
@@ -34,6 +48,7 @@ function DadosPessoais({ aoEnviar, validacoes }) {
         }}
         id="outlined-basic"
         label="Nome"
+        name="nome"
         variant="outlined"
         margin="normal"
         fullWidth
@@ -45,6 +60,7 @@ function DadosPessoais({ aoEnviar, validacoes }) {
         }}
         id="outlined-basic"
         label="Sobrenome"
+        name="sobrenome"
         variant="outlined"
         margin="normal"
         fullWidth

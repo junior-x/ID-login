@@ -28,7 +28,7 @@ function FormularioCadastro({ aoEnviar, validacoes }) {
     setDados({ ...dadosColetados, ...dados });
     console.log(dadosColetados);
     proximo();
-  }
+  }  
 
   function proximo() {
     setEtapaAtual(etapaAtual + 1);
