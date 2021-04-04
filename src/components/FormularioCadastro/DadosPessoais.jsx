@@ -17,7 +17,7 @@ function DadosPessoais({ aoEnviar, validarCPF }) {
       className="formulario-cadastro_model formulario-cadastro_background"
       onSubmit={(event) => {
         event.preventDefault();
-        aoEnviar({ nome, sobrenome, promocoes, novidades });
+        aoEnviar({ nome, sobrenome, promocoes, novidades, cpf });
       }}
     >
       <TextField

@@ -1,16 +1,28 @@
+import React, { useState } from "react";
 import { TextField, Button } from "@material-ui/core";
-import React from "react";
-import "./style.css"
+import "./style.css";
 
-function DadosEntrega({aoEnviar}) {
+function DadosEntrega({ aoEnviar }) {
+  const [cep, setCep] = useState("");
+  const [endereco, setEndereco] = useState("");
+  const [numero, setNumero] = useState("");
+  const [estado, setEstado] = useState("");
+  const [cidade, setCidade] = useState("");
+
   return (
-    <form 
-        className="formulario-cadastro_model formulario-cadastro_background"
-        onSubmit={(event)=>{
+    <form
+      className="formulario-cadastro_model formulario-cadastro_background"
+      onSubmit={(event) => {
         event.preventDefault();
-        aoEnviar();}}
+        aoEnviar({cep, endereco, numero, estado, cidade});
+      }}
     >
-      <TextField
+        <TextField 
+        value={cep}
+        onChange={(event) => {
+          event.preventDefault();
+          setCep(event.target.value)
+        }}
         id="cep"
         label="cep"
         type="number"
@@ -18,6 +30,11 @@ function DadosEntrega({aoEnviar}) {
         margin="normal"
       />
       <TextField
+      value={endereco}
+      onCchange={(event) => {
+        event.preventDefault();
+        setEndereco(event.target.value);
+      }}
         id="endereco"
         label="endereco"
         type="text"
@@ -26,6 +43,11 @@ function DadosEntrega({aoEnviar}) {
         fullWidth
       />
       <TextField
+      value={numero}
+      onChange={(event) => {
+        event.preventDefault();
+        setNumero(event.target.value);
+      }}
         id="numero"
         label="Número"
         type="number"
@@ -34,6 +56,11 @@ function DadosEntrega({aoEnviar}) {
         fullWidth
       />
       <TextField
+      value={estado}
+      onChange={(event) => {
+        event.preventDefault();
+        setEstado(event.target.value)
+      }}
         id="estado"
         label="Estado"
         type="text"
@@ -41,6 +68,11 @@ function DadosEntrega({aoEnviar}) {
         margin="normal"
       />
       <TextField
+      value={cidade}
+      onChange={(event) => {
+        event.preventDefault();
+        setCidade(event.target.value);
+      }}
         id="cidade"
         label="Cidade"
         type="texte"
@@ -53,7 +85,7 @@ function DadosEntrega({aoEnviar}) {
         color="secondary"
         className="formulario-cadastro_checkbox"
         fullWidth
-          >
+      >
         Finalizar Cadastro
       </Button>
     </form>
