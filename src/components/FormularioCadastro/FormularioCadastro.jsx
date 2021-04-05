@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
-
 import DadosPessoais from "./DadosPessoais";
 import DadosUsuario from "./DadosUsuario";
 import DadosEntrega from "./DadosEntrega";
@@ -18,9 +17,9 @@ function FormularioCadastro({ aoEnviar, validacoes }) {
   });
 
   const formularios = [
-    <DadosUsuario aoEnviar={ColetarDados} validacoes={validacoes} />,
-    <DadosPessoais aoEnviar={ColetarDados} validacoes={validacoes} />,
-    <DadosEntrega aoEnviar={ColetarDados} validacoes={validacoes} />,
+    <DadosUsuario aoEnviar={ColetarDados} />,
+    <DadosPessoais aoEnviar={ColetarDados} />,
+    <DadosEntrega aoEnviar={ColetarDados} />,
     <CadastroFinalizado />,
   ];
 
@@ -28,7 +27,7 @@ function FormularioCadastro({ aoEnviar, validacoes }) {
     setDados({ ...dadosColetados, ...dados });
     console.log(dadosColetados);
     proximo();
-  }  
+  }
 
   function proximo() {
     setEtapaAtual(etapaAtual + 1);
@@ -36,15 +35,9 @@ function FormularioCadastro({ aoEnviar, validacoes }) {
   return (
     <>
       <Stepper activeStep={etapaAtual}>
-        <Step>
-          <StepIcon>I</StepIcon>
-        </Step>
-        <Step>
-          <StepIcon>II</StepIcon>
-        </Step>
-        <Step>
-          <StepIcon>III</StepIcon>
-        </Step>
+        <Step><StepIcon>I</StepIcon></Step>
+        <Step><StepIcon>II</StepIcon></Step>
+        <Step><StepIcon>III</StepIcon></Step>
       </Stepper>
       {formularios[etapaAtual]}
     </>

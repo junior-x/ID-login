@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Checkbox from "@material-ui/core/Checkbox";
 import ValidacoesCadastro from "../../contexts/ValidacoesCadastro";
+import useErros from '../../hooks/useErros';
 
 function DadosPessoais({ aoEnviar }) {
   const [nome, setNome] = useState("");
@@ -11,25 +12,8 @@ function DadosPessoais({ aoEnviar }) {
   const [cpf, setCpf] = useState("");
   const [promocoes, setPromocoes] = useState(true);
   const [novidades, setNovidades] = useState(true);
-  const [erros, setErros] = useState({ cpf: { valido: true, texto: "" } });
-
+  const [erros, validarCampos, possoEnviar] = useErros(validacoes);
   const validacoes = useContext(ValidacoesCadastro);
-
-  function validarCampos(event) {
-    const { name, value } = event.target;
-    const novoEstado = { ...erros };
-    novoEstado[name] = validacoes[name](value);
-    setErros(novoEstado);
-  }
-
-  function possoEnviar() {
-    let posso = true;
-    for (let campo in erros) {
-      if (!erros[campo].valido) {
-        return false;
-      }
-    }
-  }
 
   return (
     <form
@@ -46,6 +30,7 @@ function DadosPessoais({ aoEnviar }) {
         onChange={(event) => {
           setNome(event.target.value);
         }}
+        onBlur={validarCampos}
         id="outlined-basic"
         label="Nome"
         name="nome"
